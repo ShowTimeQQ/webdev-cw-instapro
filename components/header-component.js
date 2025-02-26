@@ -1,10 +1,14 @@
+import { AUTH_PAGE } from "../routes.js";
 /**
  * Компонент заголовка страницы.
  * Этот компонент отображает шапку страницы с логотипом, кнопкой добавления постов/входа и кнопкой выхода (если пользователь авторизован).
- * 
+ *
  * @param {HTMLElement} params.element - HTML-элемент, в который будет рендериться заголовок.
  * @returns {HTMLElement} Возвращает элемент заголовка после рендеринга.
  */
+import { goToPage } from "../index.js";
+const user = document.querySelector(".ADD_POSTS_PAGE");
+
 export function renderHeaderComponent({ element }) {
   /**
    * Рендерит содержимое заголовка.
@@ -37,6 +41,7 @@ export function renderHeaderComponent({ element }) {
     .addEventListener("click", () => {
       if (user) {
         goToPage(ADD_POSTS_PAGE);
+        console.log(goToPage);
       } else {
         goToPage(AUTH_PAGE);
       }
