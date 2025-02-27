@@ -4,12 +4,6 @@ const personalKey = "prod";
 const baseHost = "https://webdev-hw-api.vercel.app";
 const postsHost = `${baseHost}/api/v1/${personalKey}/instapro`;
 
-let token = "";
-
-export const setToken = (newToken) => {
-  token = newToken;
-};
-
 export function getPosts({ token }) {
   return fetch(postsHost, {
     method: "GET",
