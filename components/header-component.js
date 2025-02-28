@@ -1,4 +1,5 @@
-import { AUTH_PAGE } from "../routes.js";
+import { ADD_POSTS_PAGE, AUTH_PAGE } from "../routes.js";
+import { logout } from "../index.js";
 /**
  * Компонент заголовка страницы.
  * Этот компонент отображает шапку страницы с логотипом, кнопкой добавления постов/входа и кнопкой выхода (если пользователь авторизован).
@@ -6,8 +7,7 @@ import { AUTH_PAGE } from "../routes.js";
  * @param {HTMLElement} params.element - HTML-элемент, в который будет рендериться заголовок.
  * @returns {HTMLElement} Возвращает элемент заголовка после рендеринга.
  */
-import { goToPage } from "../index.js";
-const user = document.querySelector(".ADD_POSTS_PAGE");
+import { goToPage, user, posts, page } from "../index.js";
 
 export function renderHeaderComponent({ element }) {
   /**
