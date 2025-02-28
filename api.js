@@ -1,4 +1,6 @@
 // Замени на свой, чтобы получить независимый от других набор данных.
+import { renderAddPostPageComponent } from "./components/add-post-page-component.js";
+
 // "боевая" версия инстапро лежит в ключе prod
 const personalKey = "prod";
 const baseHost = "https://webdev-hw-api.vercel.app";
@@ -20,6 +22,7 @@ export function getPosts({ token }) {
     })
     .then((data) => {
       return data.posts;
+      // renderAddPostPageComponent();
     });
 }
 
