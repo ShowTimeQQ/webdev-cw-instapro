@@ -1,7 +1,7 @@
 // Замени на свой, чтобы получить независимый от других набор данных.
 
 // "боевая" версия инстапро лежит в ключе prod
-const personalKey = "mikhail-e";
+const personalKey = "e-mickey";
 const baseHost = "https://webdev-hw-api.vercel.app";
 const postsHost = `${baseHost}/api/v1/${personalKey}/instapro`;
 const baseUserUrl = "https://wedev-api.sky.pro";
@@ -58,6 +58,30 @@ export async function uploadImage({ file }) {
   const response = await fetch(baseHost + "/api/upload/image", {
     method: "POST",
     body: data,
-  });
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data.fileUrl);
+    });
+  return await response.json();
+}
+
+export async function addImage(description, imageUrl, token) {
+  const response = await fetch(baseUserUrl + "/api/upload/image", {
+    method: "POST",
+    body: JSON.stringify({
+      description,
+      Authorization: token,
+      imageUrl,
+    }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data.fileUrl);
+    });
   return await response.json();
 }

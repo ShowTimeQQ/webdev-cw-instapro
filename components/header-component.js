@@ -7,7 +7,7 @@ import { logout } from "../index.js";
  * @param {HTMLElement} params.element - HTML-элемент, в который будет рендериться заголовок.
  * @returns {HTMLElement} Возвращает элемент заголовка после рендеринга.
  */
-import { goToPage, user, posts, page } from "../index.js";
+import { goToPage, user } from "../index.js";
 
 export function renderHeaderComponent({ element }) {
   /**

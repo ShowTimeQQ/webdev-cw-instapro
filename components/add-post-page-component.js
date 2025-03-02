@@ -13,6 +13,7 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
               />
               Выберите фото
             </label>
+             <div class="upload-image-container"></div>
              <label>
     "Опишите фотографию"
     <textarea class="input textarea" rows="4">
