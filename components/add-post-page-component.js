@@ -1,18 +1,12 @@
+import { renderUploadImageComponent } from "./upload-image-component.js";
 export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
   const render = () => {
+    let imageUrl = "";
     // @TODO: Реализовать страницу добавления поста
     const appHtml = `
     <div class="page-container">
       <div class="header-container"></div>
       Cтраница добавления поста
-          <label class="file-upload-label secondary-button">
-              <input
-                type="file"
-                class="file-upload-input"
-                style="display:none"
-              />
-              Выберите фото
-            </label>
              <div class="upload-image-container"></div>
              <label>
     "Опишите фотографию"
@@ -24,11 +18,17 @@ export function renderAddPostPageComponent({ appEl, onAddPostClick }) {
   `;
 
     appEl.innerHTML = appHtml;
+    renderUploadImageComponent({
+      element: document.querySelector(".upload-image-container"),
+      onImageUrlChange(newImageUrl) {
+        imageUrl = newImageUrl;
+      },
+    });
 
     document.getElementById("add-button").addEventListener("click", () => {
       onAddPostClick({
-        description: "Описание картинки",
-        imageUrl: "https://image.png",
+        description: document.querySelector("textarea").value,
+        imageUrl: imageUrl,
       });
     });
   };
