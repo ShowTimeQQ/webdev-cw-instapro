@@ -78,7 +78,7 @@ export const goToPage = (newPage, data) => {
       return addUserPost({ token: getToken() })
         .then((newPosts) => {
           page = USER_POSTS_PAGE;
-          post = newPosts;
+          posts = newPosts;
           renderApp();
         })
         .catch((error) => {

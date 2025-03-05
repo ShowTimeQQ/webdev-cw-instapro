@@ -1,3 +1,5 @@
+import { post } from "../index.js";
+import { renderHeaderComponent } from "./header-component.js";
 export function renderUserPageComponent({ appEl }) {
   // @TODO: реализовать рендер постов из api
   console.log("список постов Юзера:", post);
@@ -38,15 +40,15 @@ export function renderUserPageComponent({ appEl }) {
                 </div>`;
     })
     .join("");
-  const userProfilPhoto = userPosts[0].user.imageUrl;
-  const userProfilName = userPosts[0].user.name;
+  const userProfilPhoto = post[0].user.imageUrl;
+  const userProfilName = post[0].user.name;
 
   const userProfil = `
   <img class = "user-photo" scr="${userProfilPhoto}" alt="">
   <p class="user-name-individual">${userProfilName}</p>
   `;
 
-  const page = `
+  const containerPage = `
       <div class ='page-container'>
       <div class="header-container"></div>
       <div class="user-profile">${userProfil}</div>
@@ -54,7 +56,7 @@ export function renderUserPageComponent({ appEl }) {
       </div>
       `;
 
-  appEl.innerHTML = page;
+  appEl.innerHTML = containerPage;
 
   renderHeaderComponent({
     element: document.querySelector(".header-container"),

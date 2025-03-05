@@ -106,5 +106,5 @@ export async function addUserPost({ token }) {
     throw new Error("Нет авторизации");
   }
   const data = await response.json();
-  return data;
+  return data.post;
 }
