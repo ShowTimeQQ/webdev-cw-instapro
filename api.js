@@ -91,3 +91,20 @@ export async function addPost(description, imageUrl, token) {
 
   return await response.json();
 }
+
+export async function addUserPost({ token }) {
+  const response = await fetch(
+    postsHost + "/user-posts/6421860c32e0301869fb3301",
+    {
+      method: "GET",
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+  if (response.status === 401) {
+    throw new Error("Нет авторизации");
+  }
+  const data = await response.json();
+  return data;
+}
