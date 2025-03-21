@@ -1,4 +1,4 @@
-import { ADD_POSTS_PAGE, AUTH_PAGE } from "../routes.js";
+import { ADD_POSTS_PAGE, AUTH_PAGE, POSTS_PAGE } from "../routes.js";
 import { logout } from "../index.js";
 /**
  * Компонент заголовка страницы.

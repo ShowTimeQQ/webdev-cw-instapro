@@ -1,4 +1,4 @@
-import { addUserPost, getPosts } from "./api.js";
+import { userPost, getPosts } from "./api.js";
 import { renderAddPostPageComponent } from "./components/add-post-page-component.js";
 import { renderAuthPageComponent } from "./components/auth-page-component.js";
 import { addPost } from "./api.js";
@@ -21,7 +21,6 @@ import {
 export let user = getUserFromLocalStorage();
 export let page = null;
 export let posts = [];
-export let post = [];
 
 const getToken = () => {
   const token = user ? `Bearer ${user.token}` : undefined;
@@ -75,7 +74,7 @@ export const goToPage = (newPage, data) => {
       page = USER_POSTS_PAGE;
       posts = [];
 
-      return addUserPost({ token: getToken() })
+      return userPost({ token: getToken(), id: data.userId })
         .then((newPosts) => {
           page = USER_POSTS_PAGE;
           posts = newPosts;

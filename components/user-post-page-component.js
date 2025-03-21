@@ -1,62 +1,57 @@
-import { post } from "../index.js";
+import { USER_POSTS_PAGE } from "../routes.js";
 import { renderHeaderComponent } from "./header-component.js";
+import { posts, goToPage } from "../index.js";
+
 export function renderUserPageComponent({ appEl }) {
   // @TODO: реализовать рендер постов из api
-  console.log("список постов Юзера:", post);
+  console.log("Актуальный список постов:", posts);
 
   /**
    * @TODO: чтобы отформатировать дату создания поста в виде "19 минут назад"
    * можно использовать https://date-fns.org/v2.29.3/docs/formatDistanceToNow
    */
 
-  const appHtml = post
+  const appHtml = posts
     .map((post) => {
       return `
-                    <li class="post">
-                      <div class="post-header" data-user-id="${post.user.id}">
-                          <img src="${post.user.imageUrl}" class="post-header__user-image">
-                          <p class="post-header__user-name">${post.user.name}</p>
-                      </div>
-                      <div class="post-image-container">
-                        <img class="post-image" src="${post.imageUrl}">
-                      </div>
-                      <div class="post-image-container">
-                        <img class="post-image" scr="${post.imageUrl}">
-                        </div>
-                        <div class="post-likes">
-                       <button data-post-id="${post.id}" class="like-button">
-                          <img scr="./assets/images/like-active.svg">
+              <div class="page-container">
+                <div class="header-container"></div>
+                <ul class="posts">
+                  <li class="post">
+                    <div class="post-header" data-user-id="${post.user.id}">
+                        <img src="${post.user.imageUrl}" class="post-header__user-image">
+                    </div>
+                    <div class="post-image-container">
+                      <img class="post-image" src="${post.imageUrl}">
+                    </div>
+                    <div class="post-likes">
+                      <button data-post-id="642d00579b190443860c2f32" class="like-button">
+                        <img src="./assets/images/like-active.svg">
                       </button>
                       <p class="post-likes-text">
-                      Нравится: <strong>${post.likes.length}</strong>
-                        <span class="user-name">${post.user.name}</span>
-                      ${post.description}
+                        Нравится: <strong>${post.likes.lensgth}</strong>
                       </p>
-                      <p class="post-date">
-                      ${post.createdAt}
-                      </p>
-                    </li>
-                  </ul>
-                </div>`;
+                    </div>
+                    <p class="post-text">
+                      <span class="user-name">${post.user.name}</span>
+                    ${post.description}
+                    </p>
+                    <p class="post-date">
+                    ${post.createdAt}
+                    </p>
+                  </li>
+                </ul>
+              </div>`;
     })
     .join("");
-  const userProfilPhoto = post[0].user.imageUrl;
-  const userProfilName = post[0].user.name;
+  const randerPage = `
+    <div class ='page-container'>
+    <div class="header-container"></div>
+    <ul class="posts">${appHtml}</ul>
+    </div>
+    `;
 
-  const userProfil = `
-  <img class = "user-photo" scr="${userProfilPhoto}" alt="">
-  <p class="user-name-individual">${userProfilName}</p>
-  `;
-
-  const containerPage = `
-      <div class ='page-container'>
-      <div class="header-container"></div>
-      <div class="user-profile">${userProfil}</div>
-      <ul class="posts">${appHtml}</ul>
-      </div>
-      `;
-
-  appEl.innerHTML = containerPage;
+  appEl.innerHTML = randerPage;
 
   renderHeaderComponent({
     element: document.querySelector(".header-container"),
