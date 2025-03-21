@@ -19,6 +19,16 @@ export function renderPostsPageComponent({ appEl }) {
     }
     return `${likes[likes.length - 1].name} и еще ${likes.length - 1}`;
   };
+
+  const makeLike = (likes) => {
+    if (likes === true) {
+      return 1;
+    }
+    if (likes === false) {
+      return 0;
+    }
+  };
+
   const appHtml = posts
     .map((post) => {
       return `
@@ -35,7 +45,7 @@ export function renderPostsPageComponent({ appEl }) {
                       <img class="post-image" src="${post.imageUrl}">
                     </div>
                     <div class="post-likes">
-                      <button data-post-id="${post.id}" class="like-button">
+                      <button data-post-id="${makeLike}" class="like-button">
                         <img src="./assets/images/${
                           post.isLiked ? "like-active" : "like-not-active"
                         }.svg">
